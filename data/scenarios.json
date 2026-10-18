@@ -1,0 +1,136 @@
+{
+  "scenarios": [
+    {
+      "id": "reconnect-old-friend",
+      "title": "Reconnecting with an old friend",
+      "category": "Friendships",
+      "subcategory": "Reconnecting",
+      "difficulty": "starter",
+      "status": "Draft, pending clinician review",
+      "summary": "Greet a friend you have not seen in years, catch up, and suggest meeting again.",
+      "opening_line": "Hey! Wow, it has been ages. How have you been?",
+      "goals": [
+        "Greet warmly and use the friend's name",
+        "Share one or two recent updates about yourself",
+        "Ask at least one question about the friend's life",
+        "Suggest a specific time to meet again"
+      ],
+      "hints": [
+        "It is so good to see you. How have you been?",
+        "I have been busy with university. What have you been up to?",
+        "Would you like to get coffee next week?"
+      ],
+      "tags": ["friend", "old", "reunion", "catch up", "meet", "coffee"]
+    },
+    {
+      "id": "starting-conversation-at-work",
+      "title": "Starting a conversation at work",
+      "category": "Work",
+      "subcategory": "Small talk",
+      "difficulty": "starter",
+      "status": "Draft, pending clinician review",
+      "summary": "Make small talk with a colleague during a break without it feeling forced.",
+      "opening_line": "Hi. Did you get a chance to try the new cafeteria menu?",
+      "goals": [
+        "Respond to the colleague's question",
+        "Give a short answer or opinion",
+        "Ask one follow-up question",
+        "Close the conversation politely"
+      ],
+      "hints": [
+        "Yes, I tried it. What did you think of it?",
+        "I liked the soup. Have you tried it yet?",
+        "Thanks for the tip. I hope to see you at lunch."
+      ],
+      "tags": ["colleague", "break", "small talk", "office", "work"]
+    },
+    {
+      "id": "ordering-at-busy-cafe",
+      "title": "Ordering at a busy café",
+      "category": "Everyday errands",
+      "subcategory": "Public places",
+      "difficulty": "starter",
+      "status": "Draft, pending clinician review",
+      "summary": "Order a drink and a snack when the queue is long and the staff are busy.",
+      "opening_line": "Hi, welcome! What can I get for you today?",
+      "goals": [
+        "State the order clearly",
+        "Ask one question about an item",
+        "Confirm the total before paying",
+        "Say thank you and step aside"
+      ],
+      "hints": [
+        "I would like a medium latte, please.",
+        "What is in the chicken sandwich?",
+        "Could you tell me the total, please?"
+      ],
+      "tags": ["cafe", "order", "queue", "shop", "coffee"]
+    },
+    {
+      "id": "asking-neighbour-favour",
+      "title": "Asking a neighbour for a favour",
+      "category": "Community",
+      "subcategory": "Neighbours",
+      "difficulty": "intermediate",
+      "status": "Draft, pending clinician review",
+      "summary": "Ask a neighbour for a small favour, accept a no gracefully, and say thank you.",
+      "opening_line": "Oh, hello. Is everything alright?",
+      "goals": [
+        "Introduce yourself by name if needed",
+        "Explain the request in one or two sentences",
+        "Accept a no politely",
+        "Thank the neighbour"
+      ],
+      "hints": [
+        "Hi, I am your neighbour from the next flat. I have a small favour to ask.",
+        "Would it be possible to borrow your ladder for an hour?",
+        "No problem at all. Thank you for considering it."
+      ],
+      "tags": ["neighbour", "favour", "help", "home"]
+    },
+    {
+      "id": "responding-rude-remark",
+      "title": "Responding to a rude remark from a stranger",
+      "category": "Everyday errands",
+      "subcategory": "Difficult moments",
+      "difficulty": "advanced",
+      "status": "Draft, pending clinician review",
+      "summary": "Stay calm and respond to an unkind comment without escalating or withdrawing.",
+      "opening_line": "Honestly, some people just do not know how to queue.",
+      "goals": [
+        "Pause before responding",
+        "Acknowledge the comment without arguing",
+        "Say something brief and neutral",
+        "Leave the situation if you feel unsafe"
+      ],
+      "hints": [
+        "I hear you. Let us all get through the line.",
+        "I am not going to argue about it. Have a good day.",
+        "If it keeps going, I will step away."
+      ],
+      "tags": ["rude", "stranger", "conflict", "calm", "queue"]
+    },
+    {
+      "id": "joining-family-gathering",
+      "title": "Joining a family gathering",
+      "category": "Family",
+      "subcategory": "Gatherings",
+      "difficulty": "intermediate",
+      "status": "Draft, pending clinician review",
+      "summary": "Join a relative's gathering, answer questions about your life, and step away when you need a break.",
+      "opening_line": "There you are! Come and sit. We were just talking about you.",
+      "goals": [
+        "Greet each relative",
+        "Answer a question about your studies or work",
+        "Change the topic if a question feels too personal",
+        "Ask to step out for a short break"
+      ],
+      "hints": [
+        "Hello, it is good to see everyone. How is the family?",
+        "I am studying computer science at the moment. It keeps me busy.",
+        "Would you excuse me for a few minutes? I will be right back."
+      ],
+      "tags": ["family", "relatives", "gathering", "dinner", "break"]
+    }
+  ]
+}

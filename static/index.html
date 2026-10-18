@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice scenarios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Palette: #031716 #032F30 #0A7075 #0C969C #6BA3BE #274D60 */
+  :root {
+    color-scheme: light;
+    --p-abyss: #031716;
+    --p-deep: #032F30;
+    --p-teal: #0A7075;
+    --p-bright: #0C969C;
+    --p-sky: #6BA3BE;
+    --p-slate: #274D60;
+
+    --bg: #EDF4F5;
+    --surface: #FFFFFF;
+    --surface-2: #F5FAFA;
+    --ink: #031716;
+    --muted: #3B5F6F;
+    --line: #D2E2E6;
+    --accent: #0A7075;
+    --accent-hover: #087F85;
+    --accent-text: #0A7075;
+    --soft: #E0EFF0;
+    --soft-sky: #E4EEF3;
+    --focus: #0C969C;
+    --mark: rgba(12, 150, 156, .22);
+    --input-bg: #FFFFFF;
+    --shadow: 0 1px 2px rgba(3, 23, 22, .06), 0 4px 12px rgba(3, 47, 48, .06);
+    --shadow-hover: 0 2px 4px rgba(3, 23, 22, .08), 0 12px 28px rgba(3, 47, 48, .12);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #031716;
+      --surface: #062A2B;
+      --surface-2: #032F30;
+      --ink: #E3F0F1;
+      --muted: #9DC2D2;
+      --line: #164345;
+      --accent: #0A7075;
+      --accent-hover: #0C969C;
+      --accent-text: #6BA3BE;
+      --soft: rgba(12, 150, 156, .16);
+      --soft-sky: rgba(107, 163, 190, .16);
+      --mark: rgba(12, 150, 156, .38);
+      --input-bg: #032F30;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 12px rgba(0, 0, 0, .25);
+      --shadow-hover: 0 2px 4px rgba(0, 0, 0, .35), 0 12px 28px rgba(0, 0, 0, .4);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #031716;
+    --surface: #062A2B;
+    --surface-2: #032F30;
+    --ink: #E3F0F1;
+    --muted: #9DC2D2;
+    --line: #164345;
+    --accent: #0A7075;
+    --accent-hover: #0C969C;
+    --accent-text: #6BA3BE;
+    --soft: rgba(12, 150, 156, .16);
+    --soft-sky: rgba(107, 163, 190, .16);
+    --mark: rgba(12, 150, 156, .38);
+    --input-bg: #032F30;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 12px rgba(0, 0, 0, .25);
+    --shadow-hover: 0 2px 4px rgba(0, 0, 0, .35), 0 12px 28px rgba(0, 0, 0, .4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  h1 { font-size: 1.4rem; margin: 0 0 12px; }
+  h2 { font-size: 1.3rem; margin: 0 0 8px; }
+  h3 { font-size: 1.05rem; margin: 22px 0 6px; }
+  p { margin: 0 0 12px; max-width: 70ch; }
+  ul, ol { padding-left: 20px; margin: 0 0 12px; }
+  li + li { margin-top: 6px; }
+  ::selection { background: var(--p-bright); color: #fff; }
+
+  .visually-hidden {
+    position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  button, select, input {
+    font: inherit;
+    color: inherit;
+  }
+  button {
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 9px 12px;
+    text-align: left;
+    transition: border-color .18s, background-color .18s, box-shadow .18s, transform .18s, color .18s;
+  }
+  button:hover { border-color: var(--p-bright); }
+  button:disabled { opacity: .4; cursor: default; border-color: var(--line); }
+  button.primary {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+    font-weight: 700; padding: 12px 24px;
+    box-shadow: 0 4px 14px rgba(12, 150, 156, .35);
+  }
+  button.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-1px); }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+  /* Header: deep-teal gradient band */
+  header {
+    position: relative;
+    z-index: 1;
+    padding: 22px 24px 20px;
+    color: #E3F0F1;
+    background:
+      radial-gradient(900px 260px at 85% -40%, rgba(12, 150, 156, .45), transparent 70%),
+      radial-gradient(600px 220px at 0% 120%, rgba(107, 163, 190, .22), transparent 70%),
+      linear-gradient(120deg, var(--p-abyss) 0%, var(--p-deep) 55%, #074F52 100%);
+    border-bottom: 1px solid rgba(107, 163, 190, .25);
+  }
+  header::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+    background: linear-gradient(90deg, var(--p-teal), var(--p-bright), var(--p-sky), var(--p-slate));
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-mark {
+    width: 44px; height: 44px; border-radius: 12px; flex: none;
+    background: linear-gradient(135deg, var(--p-bright), var(--p-sky));
+    color: var(--p-abyss);
+    display: grid; place-items: center;
+    box-shadow: 0 6px 18px rgba(12, 150, 156, .45);
+  }
+  .brand h1 { margin: 0; font-size: 1.35rem; line-height: 1.2; color: #fff; letter-spacing: .01em; }
+  .brand p { margin: 0; font-size: 14px; color: var(--p-sky); }
+  .nav-row { display: flex; gap: 8px; align-items: center; }
+  .nav-row button {
+    padding: 6px 14px; font-size: 15px; color: #E3F0F1;
+    background: rgba(255, 255, 255, .06); border-color: rgba(107, 163, 190, .35);
+  }
+  .nav-row button:hover:not(:disabled) { background: rgba(12, 150, 156, .25); border-color: var(--p-bright); }
+  .nav-row button:disabled { opacity: .35; border-color: rgba(107, 163, 190, .25); }
+
+  .search-form { display: flex; gap: 10px; max-width: 840px; }
+  .search-form input[type="search"] {
+    flex: 1;
+    padding: 13px 14px 13px 44px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--p-abyss);
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230A7075' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 15px center;
+    min-width: 0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+    transition: border-color .18s, box-shadow .18s;
+  }
+  .search-form input[type="search"]::placeholder { color: #5E7F8C; }
+  .search-form input[type="search"]:focus {
+    outline: none;
+    border-color: var(--p-bright);
+    box-shadow: 0 0 0 4px rgba(12, 150, 156, .35), 0 6px 20px rgba(0, 0, 0, .25);
+  }
+  header button.primary { background: var(--p-bright); border-color: var(--p-bright); color: var(--p-abyss); }
+  header button.primary:hover { background: #10AAB0; border-color: #10AAB0; }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-top: 14px;
+  }
+  .filters label { display: flex; gap: 8px; align-items: center; color: #B9D4DF; font-size: 15px; }
+  select {
+    padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--input-bg); cursor: pointer;
+  }
+  header select {
+    color: #fff; background: rgba(255, 255, 255, .08); border-color: rgba(107, 163, 190, .4);
+  }
+  header select:hover { border-color: var(--p-bright); background: rgba(12, 150, 156, .2); }
+  select option { color: var(--p-abyss); background: #fff; }
+  .hint { font-size: 14px; color: #9DC2D2; margin: 10px 0 0; max-width: 80ch; }
+
+  /* Breadcrumbs */
+  main > nav { padding-top: 18px !important; }
+  .crumbs { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 2px; padding: 0; margin: 0 0 16px; font-size: 15px; }
+  .crumbs li + li { margin-top: 0; }
+  .crumbs li + li::before { content: "\203A"; color: var(--p-sky); margin: 0 6px; font-weight: 700; }
+  .crumbs button { border: 0; padding: 2px 8px; background: none; color: var(--accent-text); border-radius: 6px; font-weight: 700; }
+  .crumbs button:hover { background: var(--soft); }
+  .crumbs [aria-current="page"] { color: var(--muted); }
+
+  /* Three-column layout */
+  .layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr) minmax(0, 1fr);
+    gap: 22px;
+    padding: 0 24px 28px;
+    align-items: start;
+  }
+  aside, .results, .preview { padding: 20px; }
+  .results { padding-left: 0; padding-right: 0; padding-top: 6px; }
+  aside, .preview {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 16px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+  .preview { border-top: 4px solid var(--p-bright); }
+  aside { border-top: 4px solid var(--p-slate); }
+
+  aside h2, #results-heading, #preview-heading {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted);
+    margin-bottom: 12px;
+  }
+  aside h2::before, #results-heading::before, #preview-heading::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--p-bright);
+  }
+  aside h2::before { background: var(--p-slate); }
+  #results-heading::before { background: var(--p-teal); }
+
+  /* Categories */
+  .cat-list, .sub-list { list-style: none; padding: 0; margin: 0; }
+  .cat-list > li + li, .sub-list > li + li { margin-top: 2px; }
+  .cat-list button, .sub-list button { width: 100%; border: 0; background: none; padding: 8px 10px; border-radius: 9px; }
+  .cat-list button:hover, .sub-list button:hover { background: var(--soft); }
+  .cat-list button[aria-current="true"], .sub-list button[aria-current="true"] {
+    background: var(--soft); font-weight: 700; color: var(--accent-text);
+    box-shadow: inset 3px 0 0 var(--p-bright);
+  }
+  .sub-list { padding-left: 10px; margin: 2px 0 4px 12px; border-left: 2px solid var(--soft-sky); }
+  .count {
+    color: var(--muted); font-size: 12.5px; float: right; font-weight: 700;
+    background: var(--soft-sky); border-radius: 999px; padding: 0 9px; margin-top: 2px;
+  }
+  button[aria-current="true"] > .count { background: var(--p-teal); color: #fff; }
+
+  /* Results */
+  .status {
+    display: inline-block; color: var(--muted); font-size: 14px; margin: 0 0 14px;
+  }
+  .status:not(:empty) { background: var(--soft-sky); padding: 2px 12px; border-radius: 999px; }
+  .result-list { list-style: none; padding: 0; margin: 0; }
+  .result-list li + li { margin-top: 12px; }
+  .result {
+    position: relative; overflow: hidden;
+    width: 100%; display: block; padding: 16px 18px; border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .result::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(180deg, var(--p-bright), var(--p-sky));
+    opacity: 0; transition: opacity .18s;
+  }
+  .result:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); border-color: var(--p-bright); }
+  .result:hover::before { opacity: .6; }
+  .result.active { border-color: var(--p-bright); box-shadow: var(--shadow-hover); background: var(--surface-2); }
+  .result.active::before { opacity: 1; }
+  .result-title { display: block; font-weight: 700; font-size: 1.07rem; }
+  .result.active .result-title { color: var(--accent-text); }
+  .tag {
+    display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .02em;
+    border-radius: 999px; padding: 1px 10px; margin: 8px 6px 0 0;
+    background: var(--soft); color: var(--accent-text);
+  }
+  .tag:nth-child(2) { background: var(--soft-sky); color: var(--muted); }
+  .tag:nth-child(3) {
+    background: transparent; color: var(--muted);
+    box-shadow: inset 0 0 0 1px var(--p-sky); text-transform: capitalize;
+  }
+  .snippet { display: block; margin-top: 8px; color: var(--muted); }
+  mark { background: var(--mark); color: inherit; padding: 0 3px; border-radius: 4px; }
+
+  /* Preview */
+  #preview > h2 { font-size: 1.45rem; line-height: 1.3; }
+  #preview h3 {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1rem; padding-top: 16px; border-top: 1px solid var(--line); margin-top: 18px;
+    color: var(--ink);
+  }
+  #preview h3::before {
+    content: ""; width: 4px; height: 18px; border-radius: 2px;
+    background: linear-gradient(180deg, var(--p-bright), var(--p-sky));
+  }
+  blockquote {
+    position: relative;
+    margin: 0 0 12px; padding: 14px 18px 14px 44px;
+    background: linear-gradient(135deg, var(--soft), var(--soft-sky));
+    border-radius: 12px; font-style: italic;
+  }
+  blockquote::before {
+    content: "\201C"; position: absolute; left: 14px; top: 2px;
+    font: 700 2.4rem/1 Georgia, serif; color: var(--p-bright); font-style: normal;
+  }
+  .draft-note { font-size: 14px; color: var(--muted); }
+  #preview > h2 + .draft-note {
+    display: inline-block; background: var(--soft-sky); color: var(--muted);
+    border: 1px solid rgba(107, 163, 190, .5);
+    border-radius: 999px; padding: 1px 12px; font-size: 13px;
+  }
+  #preview ul:not(.related) li::marker { color: var(--p-bright); }
+  .related { list-style: none; padding: 0; }
+  .related li + li { margin-top: 6px; }
+  .related button { width: 100%; }
+  .related button:hover { background: var(--soft); }
+  .related button[data-id]::after { content: "\2192"; float: right; color: var(--p-bright); font-weight: 700; transition: transform .18s; }
+  .related button[data-id]:hover::after { transform: translateX(3px); }
+  .empty { color: var(--muted); }
+  .result-list > .empty, #preview > .empty {
+    padding: 32px 16px; text-align: center; border: 1.5px dashed var(--p-sky);
+    border-radius: var(--radius); background: var(--soft-sky); max-width: none;
+  }
+
+  aside::-webkit-scrollbar, .preview::-webkit-scrollbar { width: 8px; }
+  aside::-webkit-scrollbar-thumb, .preview::-webkit-scrollbar-thumb { background: var(--p-sky); border-radius: 4px; }
+
+  @media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; gap: 16px; padding: 0 16px 16px; }
+    aside, .preview { position: static; max-height: none; }
+    header { padding: 16px; }
+    main > nav { padding-left: 16px !important; padding-right: 16px !important; }
+  }
+  @media (max-width: 520px) {
+    .search-form button.primary { padding: 12px 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+    .result:hover, button.primary:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top-row">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div>
+        <h1>Practice scenarios</h1>
+        <p>Find a conversation to practise</p>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button id="back" type="button" aria-label="Go back">&larr; Back</button>
+      <button id="forward" type="button" aria-label="Go forward">Forward &rarr;</button>
+    </div>
+  </div>
+
+  <form id="search-form" class="search-form" role="search">
+    <label for="q" class="visually-hidden">Search scenarios</label>
+    <input id="q" type="search" placeholder="Search practice scenarios" autocomplete="off">
+    <button class="primary" type="submit">Search</button>
+  </form>
+
+  <div class="filters">
+    <label>Search type
+      <select id="mode">
+        <option value="vector">Relevance</option>
+        <option value="boolean">Boolean (AND, OR, NOT)</option>
+      </select>
+    </label>
+    <label>Difficulty
+      <select id="difficulty">
+        <option value="">Any</option>
+        <option value="starter">Starter</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </label>
+  </div>
+  <p class="hint" id="mode-hint">Relevance ranks scenarios by how closely they match your words.</p>
+</header>
+
+<main>
+  <nav aria-label="Breadcrumb" style="padding: 14px 24px 0;">
+    <ol class="crumbs" id="crumbs"></ol>
+  </nav>
+
+  <div class="layout">
+    <aside aria-label="Categories">
+      <h2>Categories</h2>
+      <ul class="cat-list" id="categories"></ul>
+    </aside>
+
+    <section class="results" aria-labelledby="results-heading">
+      <h2 id="results-heading">Scenarios</h2>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <ul class="result-list" id="results"></ul>
+    </section>
+
+    <section class="preview" aria-labelledby="preview-heading">
+      <h2 id="preview-heading">Preview</h2>
+      <div id="preview"><p class="empty">Choose a scenario to see its preview.</p></div>
+    </section>
+  </div>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const els = {
+  q: $("q"), mode: $("mode"), difficulty: $("difficulty"), modeHint: $("mode-hint"),
+  form: $("search-form"), back: $("back"), forward: $("forward"), crumbs: $("crumbs"),
+  categories: $("categories"), results: $("results"), status: $("status"), preview: $("preview"),
+};
+
+const MODE_HINTS = {
+  vector: "Relevance ranks scenarios by how closely they match your words.",
+  boolean: "Use AND, OR, NOT and brackets in capitals, for example: (friend OR neighbour) AND cafe",
+};
+
+let catData = [];
+let state = { q: "", mode: "vector", category: "", subcategory: "", difficulty: "", scenarioId: "" };
+let history = [];
+let pointer = -1;
+let currentTitle = "";
+let crumbTargets = [];
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function highlight(text) {
+  const out = esc(text);
+  const terms = [...new Set(
+    (state.q.toLowerCase().match(/[a-z0-9]+/g) || []).filter((t) => !["and", "or", "not"].includes(t))
+  )];
+  if (!terms.length) return out;
+  const re = new RegExp(`\\b(${terms.join("|")})\\b`, "gi");
+  return out.replace(re, "<mark>$1</mark>");
+}
+
+// Navigation history: every browse or open action is recorded; Back and Forward move through it.
+function go(next) {
+  if (JSON.stringify(next) === JSON.stringify(state) && pointer >= 0) return;
+  state = { ...next };
+  history = history.slice(0, pointer + 1);
+  history.push({ ...state });
+  pointer = history.length - 1;
+  render();
+}
+
+function step(delta) {
+  const target = pointer + delta;
+  if (target < 0 || target >= history.length) return;
+  pointer = target;
+  state = { ...history[pointer] };
+  render();
+}
+
+function syncControls() {
+  els.q.value = state.q;
+  els.mode.value = state.mode;
+  els.difficulty.value = state.difficulty;
+  els.modeHint.textContent = MODE_HINTS[state.mode];
+  els.back.disabled = pointer <= 0;
+  els.forward.disabled = pointer >= history.length - 1;
+}
+
+function renderCategories() {
+  els.categories.innerHTML = [
+    `<li><button type="button" data-cat="" ${!state.category ? 'aria-current="true"' : ""}>All scenarios</button></li>`,
+    ...catData.map((c) => {
+      const active = state.category === c.name;
+      const subs = active ? `<ul class="sub-list">${c.subcategories.map((sc) => `
+        <li><button type="button" data-cat="${esc(c.name)}" data-sub="${esc(sc.name)}"
+          ${state.subcategory === sc.name ? 'aria-current="true"' : ""}>
+          ${esc(sc.name)} <span class="count">${sc.count}</span></button></li>`).join("")}</ul>` : "";
+      return `<li><button type="button" data-cat="${esc(c.name)}"
+        ${active && !state.subcategory ? 'aria-current="true"' : ""}>
+        ${esc(c.name)} <span class="count">${c.count}</span></button>${subs}</li>`;
+    }),
+  ].join("");
+}
+
+function renderCrumbs() {
+  const crumbs = [{ label: "All scenarios", next: { ...state, category: "", subcategory: "", scenarioId: "" } }];
+  if (state.category) {
+    crumbs.push({ label: state.category, next: { ...state, subcategory: "", scenarioId: "" } });
+  }
+  if (state.subcategory) {
+    crumbs.push({ label: state.subcategory, next: { ...state, scenarioId: "" } });
+  }
+  if (state.scenarioId && currentTitle) {
+    crumbs.push({ label: currentTitle, next: null });
+  }
+  crumbTargets = crumbs.map((c) => c.next);
+  els.crumbs.innerHTML = crumbs.map((c, i) =>
+    i === crumbs.length - 1
+      ? `<li aria-current="page">${esc(c.label)}</li>`
+      : `<li><button type="button" data-i="${i}">${esc(c.label)}</button></li>`
+  ).join("");
+}
+
+async function renderResults() {
+  const params = new URLSearchParams({
+    q: state.q, mode: state.mode, category: state.category,
+    subcategory: state.subcategory, difficulty: state.difficulty,
+  });
+  els.status.textContent = "Searching...";
+  const res = await fetch(`/api/search?${params}`);
+  const data = await res.json();
+  if (!res.ok) {
+    els.results.innerHTML = "";
+    els.status.textContent = data.error;
+    return;
+  }
+  els.status.textContent = `${data.count} ${data.count === 1 ? "scenario" : "scenarios"} found`;
+  if (!data.count) {
+    els.results.innerHTML = `<li class="empty">No scenarios match. Try fewer words, or clear a filter.</li>`;
+    return;
+  }
+  els.results.innerHTML = data.results.map((r) => {
+    const active = r.id === state.scenarioId;
+    return `<li><button type="button" class="result ${active ? "active" : ""}" data-id="${esc(r.id)}"
+      ${active ? 'aria-current="true"' : ""}>
+      <span class="result-title">${esc(r.title)}</span>
+      <span><span class="tag">${esc(r.category)}</span><span class="tag">${esc(r.subcategory)}</span><span class="tag">${esc(r.difficulty)}</span></span>
+      <span class="snippet">${highlight(r.summary)}</span></button></li>`;
+  }).join("");
+}
+
+async function renderPreview() {
+  if (!state.scenarioId) {
+    currentTitle = "";
+    els.preview.innerHTML = `<p class="empty">Choose a scenario to see its preview.</p>`;
+    return;
+  }
+  const res = await fetch(`/api/scenarios/${encodeURIComponent(state.scenarioId)}`);
+  if (!res.ok) {
+    currentTitle = "";
+    els.preview.innerHTML = `<p class="empty">This scenario could not be found.</p>`;
+    return;
+  }
+  const { scenario: s, related } = await res.json();
+  currentTitle = s.title;
+  els.preview.innerHTML = `
+    <h2>${esc(s.title)}</h2>
+    <p class="draft-note">${esc(s.status)}</p>
+    <p>${esc(s.summary)}</p>
+    <h3>The conversation starts with</h3>
+    <blockquote>${esc(s.opening_line)}</blockquote>
+    <h3>Goals</h3>
+    <ul>${s.goals.map((g) => `<li>${esc(g)}</li>`).join("")}</ul>
+    <h3>Help suggestions</h3>
+    <p class="draft-note">Shown on the practice screen when the Help button is pressed.</p>
+    <ul>${s.hints.map((h) => `<li>${esc(h)}</li>`).join("")}</ul>
+    <h3>Related scenarios</h3>
+    <ul class="related">${related.length
+      ? related.map((r) => `<li><button type="button" data-id="${esc(r.id)}">${esc(r.title)}</button></li>`).join("")
+      : "<li class=\"empty\">No related scenarios yet.</li>"}</ul>`;
+}
+
+async function render() {
+  syncControls();
+  renderCategories();
+  await Promise.all([renderResults(), renderPreview()]);
+  renderCrumbs();
+}
+
+// Event wiring
+els.form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  go({ ...state, q: els.q.value.trim(), scenarioId: "" });
+});
+els.mode.addEventListener("change", () => go({ ...state, mode: els.mode.value, scenarioId: "" }));
+els.difficulty.addEventListener("change", () => go({ ...state, difficulty: els.difficulty.value, scenarioId: "" }));
+els.back.addEventListener("click", () => step(-1));
+els.forward.addEventListener("click", () => step(1));
+
+els.categories.addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+  go({ ...state, category: btn.dataset.cat, subcategory: btn.dataset.sub || "", scenarioId: "" });
+});
+
+els.results.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-id]");
+  if (btn) go({ ...state, scenarioId: btn.dataset.id });
+});
+
+els.preview.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-id]");
+  if (btn) go({ ...state, scenarioId: btn.dataset.id });
+});
+
+els.crumbs.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-i]");
+  if (!btn) return;
+  const target = crumbTargets[Number(btn.dataset.i)];
+  if (target) go(target);
+});
+
+async function init() {
+  const res = await fetch("/api/categories");
+  catData = (await res.json()).categories;
+  history = [{ ...state }];
+  pointer = 0;
+  render();
+}
+init();
+</script>
+</body>
+</html>
